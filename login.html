@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kemet Egypt</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A84C;
+  --gold2: #F0D080;
+  --gold3: #8B6B1A;
+  --gold4: #FFE566;
+  --blue: #1A3A6B;
+  --blue2: #2A5298;
+  --teal: #2E8B8B;
+  --teal2: #5ECFCF;
+  --dark: #0A0805;
+}
+
+- { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+min-height: 100vh;
+background: var(–dark);
+font-family: ‘Cairo’, sans-serif;
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+overflow: hidden;
+}
+
+body::before {
+content: ‘’;
+position: fixed;
+inset: 0;
+background:
+radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 60%),
+radial-gradient(ellipse at 50% 100%, rgba(26,58,107,0.2) 0%, transparent 60%),
+repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(201,168,76,0.012) 3px, rgba(201,168,76,0.012) 4px),
+repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(201,168,76,0.012) 3px, rgba(201,168,76,0.012) 4px);
+pointer-events: none;
+}
+
+.hiero-left, .hiero-right {
+position: fixed;
+top: 50%;
+transform: translateY(-50%);
+font-size: 12px;
+color: rgba(201,168,76,0.12);
+writing-mode: vertical-rl;
+letter-spacing: 14px;
+pointer-events: none;
+}
+.hiero-left { left: 10px; }
+.hiero-right { right: 10px; transform: translateY(-50%) rotate(180deg); }
+
+.container {
+width: 100%;
+max-width: 390px;
+padding: 14px;
+position: relative;
+z-index: 1;
+animation: fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) forwards;
+}
+
+@keyframes fadeUp {
+from { opacity:0; transform:translateY(40px); }
+to { opacity:1; transform:translateY(0); }
+}
+
+/* LOGO */
+.logo-wrap { text-align:center; margin-bottom:20px; }
+
+.logo-emblem {
+width:110px; height:110px;
+margin:0 auto 12px;
+position:relative;
+}
+
+.logo-outer {
+position:absolute; inset:0;
+border-radius:50%;
+background: conic-gradient(var(–gold3),var(–gold),var(–gold2),var(–gold4),var(–gold2),var(–gold),var(–gold3),var(–gold),var(–gold2),var(–gold3));
+animation: spin 25s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+.logo-inner {
+position:absolute; inset:3px;
+border-radius:50%;
+background:radial-gradient(135deg, #1a2a50 0%, #0a1530 40%, #050a1a 100%);
+display:flex; align-items:center; justify-content:center;
+border:1px solid rgba(201,168,76,0.35);
+}
+.logo-inner::before {
+content:’’; position:absolute; inset:5px;
+border-radius:50%;
+border:1px solid rgba(201,168,76,0.15);
+}
+
+.pharaoh-icon {
+font-size:48px;
+filter:drop-shadow(0 0 10px rgba(201,168,76,0.8));
+}
+
+.app-title {
+font-family:‘Cinzel Decorative’,serif;
+font-size:28px; font-weight:900;
+background:linear-gradient(180deg, var(–gold4) 0%, var(–gold) 45%, var(–gold3) 100%);
+-webkit-background-clip:text; -webkit-text-fill-color:transparent;
+background-clip:text;
+letter-spacing:5px;
+}
+
+.app-sub {
+font-family:‘Cinzel’,serif;
+font-size:11px; color:var(–teal2);
+letter-spacing:8px; margin-top:3px;
+}
+
+/* DIVIDER */
+.ornate-div {
+display:flex; align-items:center; gap:8px;
+margin-bottom:18px;
+}
+.div-line {
+flex:1; height:2px;
+background:linear-gradient(to left, transparent, var(–gold3), var(–gold));
+}
+.div-line.r { background:linear-gradient(to right, transparent, var(–gold3), var(–gold)); }
+.div-mid { color:var(–gold); font-size:15px; letter-spacing:6px; }
+
+/* CARD */
+.card {
+background:linear-gradient(160deg, #12100a 0%, #0d1525 50%, #0a0d1a 100%);
+position:relative;
+padding:26px 22px;
+overflow:hidden;
+}
+
+.card-border-t {
+position:absolute; top:0; left:0; right:0; height:2px;
+background:linear-gradient(to right, transparent, var(–gold3), var(–gold2), var(–gold), var(–gold2), var(–gold3), transparent);
+}
+.card-border-b {
+position:absolute; bottom:0; left:0; right:0; height:2px;
+background:linear-gradient(to right, transparent, var(–blue2), var(–teal), var(–blue2), transparent);
+}
+.card-border-l {
+position:absolute; top:0; bottom:0; left:0; width:1px;
+background:linear-gradient(to bottom, transparent, var(–gold3), var(–gold), var(–gold3), transparent);
+}
+.card-border-r {
+position:absolute; top:0; bottom:0; right:0; width:1px;
+background:linear-gradient(to bottom, transparent, var(–gold3), var(–gold), var(–gold3), transparent);
+}
+
+/* corner diamonds */
+.c { position:absolute; color:var(–gold); font-size:14px; opacity:0.5; line-height:1; }
+.c.tl { top:6px; right:6px; }
+.c.tr { top:6px; left:6px; }
+.c.bl { bottom:6px; right:6px; }
+.c.br { bottom:6px; left:6px; }
+
+.card-wm {
+position:absolute; top:50%; left:50%;
+transform:translate(-50%,-50%);
+font-size:130px; opacity:0.02;
+color:var(–gold); pointer-events:none;
+}
+
+.screen { display:none; position:relative; z-index:1; }
+.screen.active { display:block; }
+
+.stitle {
+font-family:‘Cinzel’,serif;
+font-size:16px; font-weight:700;
+color:var(–gold2);
+text-align:center; margin-bottom:5px;
+letter-spacing:1px;
+}
+.sdesc {
+font-size:13px; color:rgba(201,168,76,0.4);
+text-align:center; margin-bottom:22px; line-height:1.7;
+}
+
+/* INPUT */
+.igroup { margin-bottom:16px; }
+
+.ilabel {
+font-family:‘Cinzel’,serif;
+font-size:10px; color:var(–gold);
+margin-bottom:7px;
+display:flex; align-items:center; gap:5px;
+letter-spacing:2px;
+text-transform:uppercase;
+}
+.ilabel span { opacity:0.6; font-size:12px; }
+
+.phone-wrap { display:flex; gap:8px; direction:ltr; }
+
+/* input container with decorative borders */
+.ibox {
+position:relative; flex:1;
+}
+.ibox::before, .ibox::after {
+content:’’; position:absolute;
+left:0; right:0; height:1px;
+background:linear-gradient(to right, transparent, var(–gold3), var(–gold), var(–gold3), transparent);
+z-index:2;
+}
+.ibox::before { top:0; }
+.ibox::after { bottom:0; }
+
+.ibox-sm { position:relative; width:68px; flex-shrink:0; }
+.ibox-sm::before, .ibox-sm::after {
+content:’’; position:absolute;
+left:0; right:0; height:1px;
+background:linear-gradient(to right, var(–gold3), var(–gold2));
+z-index:2;
+}
+.ibox-sm::before { top:0; }
+.ibox-sm::after { bottom:0; }
+
+input {
+width:100%;
+background:linear-gradient(180deg, rgba(26,58,107,0.25), rgba(10,20,50,0.45));
+border:none;
+border-left:1px solid rgba(201,168,76,0.25);
+border-right:1px solid rgba(201,168,76,0.25);
+color:var(–gold2);
+padding:12px 13px;
+font-size:15px;
+font-family:‘Cairo’,sans-serif;
+outline:none;
+transition:all 0.3s;
+direction:ltr;
+}
+input:focus {
+background:linear-gradient(180deg, rgba(26,58,107,0.45), rgba(10,20,50,0.65));
+border-color:rgba(201,168,76,0.6);
+box-shadow:inset 0 0 15px rgba(201,168,76,0.04), 0 0 20px rgba(201,168,76,0.08);
+}
+input::placeholder { color:rgba(201,168,76,0.2); font-size:13px; }
+
+.cc { width:68px !important; text-align:center; padding:12px 6px; font-size:14px; }
+
+/* BUTTON */
+.btn-wrap {
+position:relative;
+padding:0 24px;
+margin-top:18px;
+}
+
+.btn-deco {
+position:absolute; top:50%;
+transform:translateY(-50%);
+color:var(–gold); font-size:20px; opacity:0.4;
+}
+.btn-deco.l { left:0; }
+.btn-deco.r { right:0; }
+
+button.main-btn {
+width:100%; padding:0;
+background:none; border:none;
+cursor:pointer;
+font-family:‘Cairo’,sans-serif;
+}
+
+.btn-body {
+background:linear-gradient(180deg,
+#1a0d00 0%, #7a5a10 12%, #C9A84C 30%,
+#F0D080 50%, #C9A84C 70%, #7a5a10 88%, #1a0d00 100%
+);
+padding:13px 20px;
+position:relative; overflow:hidden;
+transition:all 0.3s;
+clip-path:polygon(14px 0%, calc(100% - 14px) 0%, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0% 50%);
+}
+
+.btn-body::before {
+content:’’;
+position:absolute; inset:0;
+background:linear-gradient(to bottom, rgba(255,255,255,0.18), transparent 50%, rgba(0,0,0,0.15));
+}
+
+.btn-body::after {
+content:’’;
+position:absolute; inset:2px;
+clip-path:polygon(12px 0%, calc(100% - 12px) 0%, 100% 50%, calc(100% - 12px) 100%, 12px 100%, 0% 50%);
+border:1px solid rgba(255,220,100,0.25);
+}
+
+.btn-label {
+position:relative;
+font-family:‘Cinzel’,serif;
+font-size:13px; font-weight:700;
+color:#1a0d00;
+letter-spacing:3px;
+display:flex; align-items:center; justify-content:center; gap:8px;
+}
+
+button.main-btn:hover .btn-body { filter:brightness(1.12); transform:scaleY(1.04); }
+button.main-btn:active .btn-body { filter:brightness(0.92); transform:scaleY(0.97); }
+
+/* OTP */
+.otp-row {
+display:flex; gap:7px;
+justify-content:center;
+direction:ltr; margin-bottom:6px;
+}
+.otp-cell { position:relative; width:44px; }
+.otp-cell::before, .otp-cell::after {
+content:’’; position:absolute;
+left:0; right:0; height:1px;
+background:linear-gradient(to right, var(–gold3), var(–gold2), var(–gold3));
+z-index:2;
+}
+.otp-cell::before { top:0; }
+.otp-cell::after { bottom:0; }
+
+.otp-input {
+width:44px !important; height:50px !important;
+text-align:center !important;
+font-size:20px !important; font-weight:700 !important;
+padding:0 !important;
+color:var(–gold4) !important;
+border-left:1px solid rgba(201,168,76,0.35) !important;
+border-right:1px solid rgba(201,168,76,0.35) !important;
+}
+
+.phone-disp {
+background:linear-gradient(180deg, rgba(26,58,107,0.2), rgba(10,20,50,0.35));
+border-top:1px solid rgba(201,168,76,0.25);
+border-bottom:1px solid rgba(201,168,76,0.25);
+padding:9px 14px; text-align:center;
+color:var(–gold2); font-size:14px;
+margin-bottom:20px; direction:ltr;
+letter-spacing:1px;
+}
+
+.btn-back {
+background:none; border:none;
+color:rgba(201,168,76,0.45);
+font-family:‘Cairo’,sans-serif; font-size:13px;
+cursor:pointer; margin-bottom:16px; padding:0;
+display:flex; align-items:center; gap:5px;
+transition:color 0.2s;
+}
+.btn-back:hover { color:var(–gold); }
+
+.timer { text-align:center; font-size:12px; color:rgba(201,168,76,0.3); margin-top:14px; }
+.resend { color:var(–teal2); cursor:pointer; text-decoration:underline; }
+
+.errmsg { color:#ff7070; font-size:12px; text-align:center; margin-top:6px; display:none; }
+
+/* SUCCESS */
+.suc-icon {
+font-size:68px; display:block;
+text-align:center; margin-bottom:14px;
+filter:drop-shadow(0 0 20px rgba(201,168,76,0.7));
+animation:scarabRise 0.6s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+@keyframes scarabRise {
+from { transform:scale(0) rotate(-180deg); opacity:0; }
+to { transform:scale(1) rotate(0); opacity:1; }
+}
+
+/* FOOTER */
+.footer {
+text-align:center; margin-top:16px;
+font-family:‘Cinzel’,serif;
+font-size:10px; letter-spacing:2px;
+color:rgba(201,168,76,0.18); line-height:2;
+}
+</style>
+
+</head>
+<body>
+
+<div class="hiero-left">𓀀𓁀𓂀𓃀𓄀𓅀𓆀𓇀𓈀𓉀𓊀𓋀</div>
+<div class="hiero-right">𓀀𓁀𓂀𓃀𓄀𓅀𓆀𓇀𓈀𓉀𓊀𓋀</div>
+
+<div class="container">
+
+  <div class="logo-wrap">
+    <div class="logo-emblem">
+      <div class="logo-outer"></div>
+      <div class="logo-inner">
+        <span class="pharaoh-icon">𓁤</span>
+      </div>
+    </div>
+    <div class="app-title">KEMET</div>
+    <div class="app-sub">✦ EGYPT ✦</div>
+  </div>
+
+  <div class="ornate-div">
+    <div class="div-line"></div>
+    <div class="div-mid">𓋹 𓂀 𓋹</div>
+    <div class="div-line r"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-border-t"></div>
+    <div class="card-border-b"></div>
+    <div class="card-border-l"></div>
+    <div class="card-border-r"></div>
+    <div class="c tl">✦</div>
+    <div class="c tr">✦</div>
+    <div class="c bl">✦</div>
+    <div class="c br">✦</div>
+    <div class="card-wm">𓆣</div>
+
+```
+<!-- Phone screen -->
+<div class="screen active" id="screen-phone">
+  <div class="stitle">ادخل مملكة كيمت</div>
+  <div class="sdesc">أدخل رقم موبايلك<br>لاستقبال كود التحقق المقدس</div>
+
+  <div class="igroup">
+    <div class="ilabel"><span>𓂀</span> رقم الموبايل</div>
+    <div class="phone-wrap">
+      <div class="ibox-sm">
+        <input class="cc" type="text" value="+20" maxlength="4" id="countryCode">
+      </div>
+      <div class="ibox">
+        <input type="tel" id="phoneInput" placeholder="1XXXXXXXXX" maxlength="11">
+      </div>
+    </div>
+  </div>
+
+  <div class="errmsg" id="phone-error">أدخل رقم موبايل صحيح</div>
+
+  <div class="btn-wrap">
+    <span class="btn-deco l">𓅃</span>
+    <button class="main-btn" onclick="sendOTP()">
+      <div class="btn-body">
+        <div class="btn-label">
+          <span style="opacity:.5">〜</span>
+          إرسال كود التحقق
+          <span style="opacity:.5">〜</span>
+        </div>
+      </div>
+    </button>
+    <span class="btn-deco r">𓅃</span>
+  </div>
+</div>
+
+<!-- OTP screen -->
+<div class="screen" id="screen-otp">
+  <button class="btn-back" onclick="goBack()">← رجوع</button>
+  <div class="stitle">كود التحقق المقدس</div>
+  <div class="sdesc">تم إرسال الكود إلى</div>
+  <div class="phone-disp" id="phone-disp"></div>
+
+  <div class="igroup">
+    <div class="otp-row">
+      <div class="otp-cell"><input class="otp-input" type="text" maxlength="1" id="o1" oninput="om(this,null,'o2')"></div>
+      <div class="otp-cell"><input class="otp-input" type="text" maxlength="1" id="o2" oninput="om(this,'o1','o3')"></div>
+      <div class="otp-cell"><input class="otp-input" type="text" maxlength="1" id="o3" oninput="om(this,'o2','o4')"></div>
+      <div class="otp-cell"><input class="otp-input" type="text" maxlength="1" id="o4" oninput="om(this,'o3','o5')"></div>
+      <div class="otp-cell"><input class="otp-input" type="text" maxlength="1" id="o5" oninput="om(this,'o4','o6')"></div>
+      <div class="otp-cell"><input class="otp-input" type="text" maxlength="1" id="o6" oninput="om(this,'o5',null)"></div>
+    </div>
+  </div>
+
+  <div class="errmsg" id="otp-error">الكود غير صحيح، حاول مرة أخرى</div>
+
+  <div class="btn-wrap">
+    <span class="btn-deco l">𓅃</span>
+    <button class="main-btn" onclick="verifyOTP()">
+      <div class="btn-body">
+        <div class="btn-label">
+          <span style="opacity:.5">〜</span>
+          ادخل المملكة
+          <span style="opacity:.5">〜</span>
+        </div>
+      </div>
+    </button>
+    <span class="btn-deco r">𓅃</span>
+  </div>
+
+  <div class="timer" id="timer-text">
+    إعادة الإرسال بعد <span id="cd">60</span> ثانية
+  </div>
+</div>
+
+<!-- Success screen -->
+<div class="screen" id="screen-success">
+  <span class="suc-icon">𓆣</span>
+  <div class="stitle">مرحباً بك يا فرعون! 𓂀</div>
+  <div class="sdesc">تم التحقق بنجاح<br>أنت الآن جزء من مملكة كيمت</div>
+  <div class="btn-wrap">
+    <span class="btn-deco l">𓅃</span>
+    <button class="main-btn" onclick="enterApp()">
+      <div class="btn-body">
+        <div class="btn-label">
+          <span style="opacity:.5">〜</span>
+          ادخل المملكة
+          <span style="opacity:.5">〜</span>
+        </div>
+      </div>
+    </button>
+    <span class="btn-deco r">𓅃</span>
+  </div>
+</div>
+```
+
+  </div>
+
+  <div class="footer">
+    𓋹 &nbsp; KEMET EGYPT &nbsp; 𓋹<br>
+    <span style="font-family:'Cairo';letter-spacing:0;font-size:10px">بتسجيل دخولك توافق على الشروط والأحكام</span>
+  </div>
+
+</div>
+
+<script>
+let otp='', timer;
+
+function sendOTP(){
+  const p=document.getElementById('phoneInput').value.trim();
+  const e=document.getElementById('phone-error');
+  if(p.length<10){e.style.display='block';return;}
+  e.style.display='none';
+  otp=Math.floor(100000+Math.random()*900000).toString();
+  alert('كود التحقق (للاختبار): '+otp);
+  document.getElementById('phone-disp').textContent=document.getElementById('countryCode').value+' '+p;
+  show('screen-otp'); startTimer();
+}
+
+function verifyOTP(){
+  const v=['o1','o2','o3','o4','o5','o6'].map(id=>document.getElementById(id).value).join('');
+  const e=document.getElementById('otp-error');
+  if(v===otp){e.style.display='none';clearInterval(timer);show('screen-success');}
+  else{e.style.display='block';['o1','o2','o3','o4','o5','o6'].forEach(id=>document.getElementById(id).value='');document.getElementById('o1').focus();}
+}
+
+function om(c,p,n){
+  if(c.value&&n)document.getElementById(n).focus();
+  if(!c.value&&p)document.getElementById(p).focus();
+}
+
+function startTimer(){
+  let s=60;const cd=document.getElementById('cd'),tt=document.getElementById('timer-text');
+  timer=setInterval(()=>{
+    s--;if(cd)cd.textContent=s;
+    if(s<=0){clearInterval(timer);tt.innerHTML='<span class="resend" onclick="resend()">إعادة إرسال الكود 𓋹</span>';}
+  },1000);
+}
+
+function resend(){
+  otp=Math.floor(100000+Math.random()*900000).toString();
+  alert('الكود الجديد: '+otp);
+  document.getElementById('timer-text').innerHTML='إعادة الإرسال بعد <span id="cd">60</span> ثانية';
+  startTimer();
+}
+
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function goBack(){clearInterval(timer);show('screen-phone');}
+function enterApp(){alert('🏛️ أهلاً بك في مملكة كيمت!');}
+</script>
+
+</body>
+</html>
