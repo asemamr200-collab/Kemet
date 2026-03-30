@@ -1,0 +1,9 @@
+{
+  "appId": "com.kemet.egypt",
+  "appName": "Kemet",
+  "webDir": ".",
+  "server": {
+    "url": "https://asemamr200-collab.github.io/Kemet/login.html",
+    "cleartext": true
+  }
+}
