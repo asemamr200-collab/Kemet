@@ -535,8 +535,22 @@ function sendOTP(){
 function verifyOTP(){
   const v=['o1','o2','o3','o4','o5','o6'].map(id=>document.getElementById(id).value).join('');
   const e=document.getElementById('otp-error');
-  if(v===otp){e.style.display='none';clearInterval(timer);show('screen-success');}
-  else{e.style.display='block';['o1','o2','o3','o4','o5','o6'].forEach(id=>document.getElementById(id).value='');document.getElementById('o1').focus();}
+  if(v===otp){
+    e.style.display='none';
+    clearInterval(timer);
+    // حفظ بيانات المستخدم
+    const phone=document.getElementById('phoneInput').value.trim();
+    const code=document.getElementById('countryCode').value;
+    sessionStorage.setItem('kemet_phone', code+phone);
+    sessionStorage.setItem('kemet_name', code+phone);
+    sessionStorage.setItem('kemet_avatar', '𓁤');
+    sessionStorage.setItem('kemet_logged', 'true');
+    show('screen-success');
+  } else {
+    e.style.display='block';
+    ['o1','o2','o3','o4','o5','o6'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('o1').focus();
+  }
 }
 
 function om(c,p,n){
@@ -561,7 +575,10 @@ function resend(){
 
 function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 function goBack(){clearInterval(timer);show('screen-phone');}
-function enterApp(){alert('🏛️ أهلاً بك في مملكة كيمت!');}
+function enterApp(){
+  // انتقال لصفحة الشات
+  window.location.href='chat.html';
+}
 </script>
 
 </body>
